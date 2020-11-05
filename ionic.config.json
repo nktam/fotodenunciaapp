@@ -1,0 +1,7 @@
+{
+  "name": "fotodenunciaapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
