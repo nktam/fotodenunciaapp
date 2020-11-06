@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva Denuncia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]='formulario' (ngSubmit)='enviar(formulario.value)'>
+    <ion-item>
+      <ion-input formControlName='texto' type='text' placeholder='Descripción'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox formControlName='importante'></ion-checkbox>
+      <ion-label> Importante </ion-label>
+    </ion-item>
+    <div class="divboton">
+      <ion-button color='primary' type='submit' [disabled]='!formulario.valid'>
+        <span *ngIf='!tareaProp; else elseBlock2'>Añadir tarea</span>
+        <ng-template #elseBlock2><span>Modificar</span></ng-template>
+      </ion-button>
+    </div>
+    <img [src]="domSanitizer.bypassSecurityTrustUrl(imagen)" *ngIf="imagen" width="100%" height="100%">
+
+    <ion-button expand="block " (click)="sacarFoto() ">Sacar foto</ion-button>
+
+  </form>
+
+
+  <ion-button expand="block" routerLink="/" routerDirection="root">
+    Home
+  </ion-button>
+</ion-content>
