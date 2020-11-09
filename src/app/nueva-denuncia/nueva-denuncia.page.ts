@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {Plugins, CameraResultType} from '@capacitor/core';
 import {DomSanitizer} from '@angular/platform-browser';
+import {DenunciasService} from '../servicios/denuncias.service';
+import {Denuncia} from '../modelo/denuncia';
 const {Camera}=Plugins;
 const {Geolocation}=Plugins;
-
-
 
 @Component({
   selector: 'app-nueva-denuncia',
@@ -15,13 +15,16 @@ const {Geolocation}=Plugins;
 export class NuevaDenunciaPage implements OnInit {
 
   public imagen;
+  private coord: string;
+  private fecha: string;
   private formulario: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, public domSanitizer: DomSanitizer) {
+  constructor(public formBuilder: FormBuilder, public domSanitizer: DomSanitizer, public servicio: DenunciasService) {
+
     this.formulario=formBuilder.group({
-      texto: ['', Validators.compose([Validators.required, Validators.maxLength(60)])],
-      importante: [false]
+      texto: ['', Validators.compose([Validators.required, Validators.maxLength(60)])]
     });
+
   }
 
   ngOnInit() {
@@ -30,33 +33,34 @@ export class NuevaDenunciaPage implements OnInit {
   sacarFoto() {
     const image=Camera.getPhoto({
       quality: 60,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
+      allowEditing: true,
+      resultType: CameraResultType.Base64,
       saveToGallery: true,
       width: 500,
       height: 500,
       preserveAspectRatio: true
     }).then((image) => {
-      var imageUrl=image.webPath;
-      // se asigna la url a la variable que se enlaza desde la vista
-      this.imagen=imageUrl;
-      console.log(this.imagen);
+      var imageUrl=image.base64String;
+      this.imagen="data:image/png;base64, "+imageUrl;
     })
 
     this.getPosicion();
-    console.log('este es xxxxxx:'+this.mostrarPosicion());
   }
 
   async getPosicion() {
     const coordinates=await Geolocation.getCurrentPosition();
-    console.log('Current', coordinates.coords.latitude);
-    console.log('Current', coordinates.coords.longitude);
-    console.log('Current', new Date(coordinates.timestamp));
+    this.coord=`Latitud: ${coordinates.coords.latitude} Longitud: ${coordinates.coords.longitude}`;
+    this.fecha=new Date(coordinates.timestamp).toLocaleString();
   }
 
-  mostrarPosicion() {
-    const wait=Geolocation.watchPosition({}, (position, err) => {
-    })
+
+  async nuevaDenuncia(data) {
+    if(data) {
+      // console.log(data.texto);
+      // console.log(this.coord+this.fecha)
+      // console.log(this.imagen);
+      this.servicio.addDenuncia(new Denuncia(-1, data.texto, this.imagen, this.coord, this.fecha));
+    }
   }
 
 

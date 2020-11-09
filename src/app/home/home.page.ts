@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {DenunciasService} from '../servicios/denuncias.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import {Denuncia} from '../modelo/denuncia';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,6 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public servicio: DenunciasService, public domSanitizer: DomSanitizer) { }
 
 }

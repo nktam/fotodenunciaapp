@@ -13,7 +13,7 @@ export class HttpService {
   // url base. Se puede incluir en un fichero de configuración
   base_path="http://localhost:3000/denuncias";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   httpOptions={
     headers: new HttpHeaders({"Content-Type": "application/json", }),
@@ -41,7 +41,8 @@ export class HttpService {
   }
 
   createItem(item): Observable<Denuncia> {
-    let datos=`{"descripcion":"${item.descripcion}", "importante":${item.importante}, "realizada":${item.realizada}}`;
+    let datos=`{"texto":"${item.texto}", "foto":${item.foto}, "localizacion":${item.localizacion}, "fecha":${item.fecha}}`;
+    console.log(datos);
     return this.http
       .post<Denuncia>(this.base_path, datos, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
