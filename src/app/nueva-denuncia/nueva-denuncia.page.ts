@@ -53,12 +53,8 @@ export class NuevaDenunciaPage implements OnInit {
     this.fecha=new Date(coordinates.timestamp).toLocaleString();
   }
 
-
-  async nuevaDenuncia(data) {
+  public nuevaDenuncia(data): void {
     if(data) {
-      // console.log(data.texto);
-      // console.log(this.coord+this.fecha)
-      // console.log(this.imagen);
       this.servicio.addDenuncia(new Denuncia(-1, data.texto, this.imagen, this.coord, this.fecha));
     }
   }

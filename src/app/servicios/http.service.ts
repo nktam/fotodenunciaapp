@@ -41,8 +41,7 @@ export class HttpService {
   }
 
   createItem(item): Observable<Denuncia> {
-    let datos=`{"texto":"${item.texto}", "foto":${item.foto}, "localizacion":${item.localizacion}, "fecha":${item.fecha}}`;
-    console.log(datos);
+    let datos=`{"texto":"${item.texto}", "foto":"${item.foto}", "localizacion":"${item.localizacion}", "fecha":"${item.fecha}"}`;
     return this.http
       .post<Denuncia>(this.base_path, datos, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));

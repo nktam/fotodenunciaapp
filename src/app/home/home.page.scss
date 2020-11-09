@@ -1,27 +1,21 @@
-#container {
-  text-align: center;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+* {
+  font-family: 'Asap Condensed', sans-serif;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.peq {
+  font-size: small;
+  color: #666;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+ion-title {
+  font-size: 2em; font-weight: bold; color: white;
 }
 
-#container a {
-  text-decoration: none;
+ion-toolbar {
+  --background: #706b5e;
+}
+
+ion-button {
+  font-size: 1.3em; font-weight: bold;
 }

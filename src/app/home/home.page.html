@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
       Foto denuncias
@@ -9,13 +9,17 @@
 <ion-content [fullscreen]="true">
 
   <ion-button expand="block" routerLink="/nueva-denuncia" routerDirection="root">
-    nueva denuncia
+    Nueva denuncia
   </ion-button>
 
   <ion-list>
-    <ion-item *ngFor='let denuncia of servicio.denuncias'>
+    <ion-item *ngFor='let denuncia of servicio.denuncias | slice:0:4; let i=index'>
       <ion-label>
-        {{denuncia.texto}}
+        {{denuncia.texto}}<br>
+        <span class="peq">
+          {{denuncia.localizacion}}<br>
+          {{denuncia.fecha}}
+        </span>
       </ion-label>
       <img [src]="domSanitizer.bypassSecurityTrustUrl(denuncia.foto)" width=" 20%">
     </ion-item>
