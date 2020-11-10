@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {Plugins, CameraResultType} from '@capacitor/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {DenunciasService} from '../servicios/denuncias.service';
-import {Denuncia} from '../modelo/denuncia';
+import {DenunciasService} from '../../servicios/denuncias.service';
+import {Denuncia} from '../../modelo/denuncia';
 const {Camera}=Plugins;
 const {Geolocation}=Plugins;
 
