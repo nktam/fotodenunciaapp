@@ -17,8 +17,8 @@
       <ion-label>
         {{denuncia.texto}}<br>
         <span class="peq">
-          {{denuncia.localizacion}}<br>
-          {{denuncia.fecha}}
+          <ion-icon name="location-sharp"></ion-icon>{{denuncia.localizacion}}<br>
+          <ion-icon name="calendar-clear-sharp"></ion-icon>{{denuncia.fecha | date: 'short'}}
         </span>
       </ion-label>
       <img [src]="domSanitizer.bypassSecurityTrustUrl(denuncia.foto)" width=" 20%">

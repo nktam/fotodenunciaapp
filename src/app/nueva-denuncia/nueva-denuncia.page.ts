@@ -16,7 +16,6 @@ export class NuevaDenunciaPage implements OnInit {
 
   public imagen;
   private coord: string;
-  private fecha: string;
   private formulario: FormGroup;
 
   constructor(public formBuilder: FormBuilder, public domSanitizer: DomSanitizer, public servicio: DenunciasService) {
@@ -49,13 +48,13 @@ export class NuevaDenunciaPage implements OnInit {
 
   async getPosicion() {
     const coordinates=await Geolocation.getCurrentPosition();
-    this.coord=`Latitud: ${coordinates.coords.latitude} Longitud: ${coordinates.coords.longitude}`;
-    this.fecha=new Date(coordinates.timestamp).toLocaleString();
+    this.coord=`Lat: ${coordinates.coords.latitude} Lng: ${coordinates.coords.longitude}`;
   }
 
   public nuevaDenuncia(data): void {
+    let fecha=new Date();
     if(data) {
-      this.servicio.addDenuncia(new Denuncia(-1, data.texto, this.imagen, this.coord, this.fecha));
+      this.servicio.addDenuncia(new Denuncia(-1, data.texto, this.imagen, this.coord, fecha));
     }
   }
 

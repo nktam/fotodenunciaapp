@@ -5,7 +5,7 @@ export class Denuncia {
         public texto: string,
         public foto: string,
         public localizacion: string,
-        public fecha: string
+        public fecha: Date
     ) { };
 
     static fromJson(data: any) {
