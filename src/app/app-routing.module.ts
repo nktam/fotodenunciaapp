@@ -15,6 +15,11 @@ const routes: Routes=[
     path: 'nueva-denuncia',
     loadChildren: () => import('./paginas/nueva-denuncia/nueva-denuncia.module').then(m => m.NuevaDenunciaPageModule)
   },
+  {
+    path: 'detalle',
+    loadChildren: () => import('./paginas/detalle/detalle.module').then(m => m.DetallePageModule)
+  }
+
 ];
 
 @NgModule({

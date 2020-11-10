@@ -8,13 +8,13 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-button expand="block" routerLink="/nueva-denuncia" routerDirection="root">
+  <ion-button expand="block" routerLink="/nueva-denuncia" routerDirection="forward">
     Nueva denuncia
   </ion-button>
 
   <ion-list>
     <ion-item *ngFor='let denuncia of servicio.denuncias | slice:0:4; let i=index'>
-      <ion-label>
+      <ion-label (click)="detalles(denuncia)">
         {{denuncia.texto}}<br>
         <span class="peq">
           <ion-icon name="location-sharp"></ion-icon>{{denuncia.localizacion}}<br>
@@ -23,10 +23,23 @@
       </ion-label>
       <img [src]="domSanitizer.bypassSecurityTrustUrl(denuncia.foto)" width=" 20%">
     </ion-item>
-
   </ion-list>
 
 
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div style="position: relative; height:50vh; width:100vw">
+        <canvas baseChart [datasets]="servGra.lineChartData" [labels]="servGra.lineChartLabels"
+          [options]="servGra.lineChartOptions" [colors]="servGra.lineChartColors" [legend]="servGra.lineChartLegend"
+          [chartType]="servGra.lineChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </div>
 
 
 </ion-content>

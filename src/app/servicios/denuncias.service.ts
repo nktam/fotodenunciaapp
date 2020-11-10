@@ -9,6 +9,7 @@ import {HttpService} from './http.service';
 export class DenunciasService {
 
   public denuncias: Denuncia[];
+  public denuncia: Denuncia;
 
   constructor(private http: HttpService) {
     this.denuncias=[];
@@ -28,6 +29,15 @@ export class DenunciasService {
         this.denuncias=[data, ...this.denuncias]; // actualizo denuncias
       },
       (error) => {console.log(error)}
+    );
+  }
+
+  public getDenuncia(id: string) {
+    this.http.getItem(id).subscribe(
+      (datos) => {
+        this.denuncia=Denuncia.fromJson(datos);
+      },
+      (error) => console.log(error)
     );
   }
 

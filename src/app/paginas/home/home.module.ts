@@ -5,14 +5,17 @@ import {FormsModule} from '@angular/forms';
 import {HomePage} from './home.page';
 
 import {HomePageRoutingModule} from './home-routing.module';
-
+import {RouterModule} from '@angular/router';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   imports: [
+    ChartsModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    RouterModule,
   ],
   declarations: [HomePage]
 })

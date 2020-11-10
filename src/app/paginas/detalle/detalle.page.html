@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Foto Denuncia</ion-title>
+    <ion-buttons slot="end" (click)='cerrar()'>
+      <ion-icon name="close-circle-outline" size='large'></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <p>{{denuncia.texto}}</p>
+    <p>
+      <ion-icon name="location-sharp"></ion-icon>{{denuncia.localizacion}}
+    </p>
+    <p>
+      <ion-icon name="calendar-clear-sharp"></ion-icon>{{denuncia.fecha | date: 'short'}}
+    </p>
+    <p>
+      <img [src]="domSanitizer.bypassSecurityTrustUrl(denuncia.foto)" *ngIf="denuncia.foto" width="100%" height="100%">
+    </p>
+  </div>
+  <div id="map_canvas"></div>
+</ion-content>
