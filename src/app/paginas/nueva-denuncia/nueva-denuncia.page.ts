@@ -4,6 +4,7 @@ import {Plugins, CameraResultType} from '@capacitor/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {DenunciasService} from '../../servicios/denuncias.service';
 import {Denuncia} from '../../modelo/denuncia';
+import {Router} from '@angular/router';
 const {Camera}=Plugins;
 const {Geolocation}=Plugins;
 
@@ -18,7 +19,11 @@ export class NuevaDenunciaPage implements OnInit {
   private coord: string;
   private formulario: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, public domSanitizer: DomSanitizer, public servicio: DenunciasService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public domSanitizer: DomSanitizer,
+    public servicio: DenunciasService,
+    public router: Router) {
 
     this.formulario=formBuilder.group({
       texto: ['', Validators.compose([Validators.required, Validators.maxLength(60)])]
@@ -55,6 +60,7 @@ export class NuevaDenunciaPage implements OnInit {
     let fecha=new Date();
     if(data) {
       this.servicio.addDenuncia(new Denuncia(-1, data.texto, this.imagen, this.coord, fecha));
+      this.router.navigate(['/']);
     }
   }
 

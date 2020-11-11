@@ -14,14 +14,14 @@ import {Denuncia} from '../../modelo/denuncia';
 export class HomePage {
 
   constructor(
-    public servicio: DenunciasService,
+    public denunciasServ: DenunciasService,
     public domSanitizer: DomSanitizer,
     public servGra: GraficosService,
     public modalCtrl: ModalController) { }
 
-  ionViewDidEnter() {
-    console.log(this.servicio.denuncias);
-    console.log(this.servGra.denunciasMes(this.servicio.denuncias));
+  async ionViewDidEnter() {
+    // obtenemos las denuncias por mes de los últimos 6
+    await this.servGra.denunciasMes();
   }
 
   public chartClicked(e: any): void {
@@ -41,11 +41,5 @@ export class HomePage {
     });
     await modal.present();
   }
-
-  public denunciasMes() {
-    this.servGra.denunciasMes(this.servicio.denuncias);
-  }
-
-  p
 
 }

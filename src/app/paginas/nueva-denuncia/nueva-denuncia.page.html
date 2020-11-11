@@ -16,11 +16,13 @@
       </ion-button>
     </div>
 
+    <img [src]="domSanitizer.bypassSecurityTrustUrl(imagen)" *ngIf="imagen" width="100%" height="100%">
+
     <ion-button expand="full" size="large" color='primary' type='submit' [disabled]='!formulario.valid || !imagen'>
       Adjuntar denuncia
     </ion-button>
 
-    <img [src]="domSanitizer.bypassSecurityTrustUrl(imagen)" *ngIf="imagen" width="100%" height="100%">
+
 
   </form>
 
