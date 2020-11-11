@@ -14,7 +14,7 @@
 
   <ion-list>
     <ion-item *ngFor='let denuncia of servicio.denuncias | slice:0:4; let i=index'>
-      <ion-label (click)="detalles(denuncia)">
+      <ion-label (click)="mostrarDetalles(denuncia)">
         {{denuncia.texto}}<br>
         <span class="peq">
           <ion-icon name="location-sharp"></ion-icon>{{denuncia.localizacion}}<br>
@@ -40,6 +40,5 @@
       </div>
     </div>
   </div>
-
 
 </ion-content>

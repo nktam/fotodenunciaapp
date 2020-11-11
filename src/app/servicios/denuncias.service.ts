@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
+import {from} from 'rxjs';
 import {Denuncia} from '../modelo/denuncia';
 import {HttpService} from './http.service';
+import {GraficosService} from './graficos.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,10 @@ export class DenunciasService {
 
   public denuncias: Denuncia[];
   public denuncia: Denuncia;
+  public denunciasMes: number[];
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private graServ: GraficosService) {
     this.denuncias=[];
-
     this.http.getList().subscribe(
       (datos) => {
         this.denuncias=datos.map((denuncia) => Denuncia.fromJson(denuncia)); // actualiza denuncias
@@ -32,14 +34,6 @@ export class DenunciasService {
     );
   }
 
-  public getDenuncia(id: string) {
-    this.http.getItem(id).subscribe(
-      (datos) => {
-        this.denuncia=Denuncia.fromJson(datos);
-      },
-      (error) => console.log(error)
-    );
-  }
 
 
 }

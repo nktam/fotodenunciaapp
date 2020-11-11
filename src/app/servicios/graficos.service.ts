@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
+import {Denuncia} from '../modelo/denuncia'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraficosService {
 
-
   constructor() { }
 
   public lineChartData: Array<any>=[
-    {data: [9, 12, 23, 17, 14, 11, 12], label: 'Solucionadas'},
-    {data: [14, 18, 20, 21, 21, 15, 11], label: 'Sin solucionar'},
+    {data: [4, 5, 7, 4, 2, 3], label: 'Solucionadas'},
+    {data: [0, 5, 7, 4, 1, 3], label: 'Sin solucionar'},
   ];
 
-  public lineChartLabels: Array<any>=['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio'];
+  public lineChartLabels: Array<any>=this.formatoMeses(this.GetUltimosMeses(new Date));
 
   public lineChartOptions: any={responsive: true};
 
@@ -26,7 +26,6 @@ export class GraficosService {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-
     },
 
     { // dark grey
@@ -36,7 +35,6 @@ export class GraficosService {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
-
     },
 
     { // grey
@@ -46,13 +44,37 @@ export class GraficosService {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-
     }
-
   ];
-
   public lineChartLegend: boolean=true;
   public lineChartType: string='bar';
+
+  private GetUltimosMeses(fecha: Date): Date[] {
+    let i;
+    let meses=[];
+    for(i=0; i<6; i++) {
+      meses.push(fecha.setMonth(fecha.getMonth()-1));
+    }
+    return meses
+  }
+
+  private formatoMeses(meses) {
+    let nombresMeses=["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+    let mesesaño=meses.map(e => nombresMeses[new Date(e).getMonth()]+new Date(e).getFullYear());
+    return mesesaño;
+  }
+
+  public denunciasMes(denuncias: Denuncia[]): number[] {
+    let denMes=this.GetUltimosMeses(new Date()).map(e => {
+      let num=0;
+      for(let i=0; i<denuncias.length; i++) {
+        if(new Date(e).getMonth()==new Date(denuncias[i].fecha).getMonth())
+          num+=1;
+      }
+      return num;
+    });
+    return denMes;
+  }
 
 
 }
