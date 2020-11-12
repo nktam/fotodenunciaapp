@@ -37,7 +37,7 @@ export class NuevaDenunciaPage implements OnInit {
   sacarFoto() {
     const image=Camera.getPhoto({
       quality: 60,
-      allowEditing: true,
+      allowEditing: false,
       resultType: CameraResultType.Base64,
       saveToGallery: true,
       width: 500,
