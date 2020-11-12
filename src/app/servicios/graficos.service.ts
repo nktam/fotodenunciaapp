@@ -51,7 +51,7 @@ export class GraficosService {
   // formateamos los meses para presentar en el gráfico
   private formatoMeses(meses: Date[]): string[] {
     let nombresMeses=["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-    let mesesaño=meses.map(e => nombresMeses[new Date(e).getMonth()]+new Date(e).getFullYear());
+    let mesesaño=meses.map(e => nombresMeses[new Date(e).getMonth()]+new Date(e).getFullYear().toString().slice(2, 4));
     return mesesaño;
   }
 

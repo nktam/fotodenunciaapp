@@ -11,7 +11,7 @@ import {Denuncia} from "../modelo/denuncia";
 export class HttpService {
 
   // url base. Se puede incluir en un fichero de configuración
-  base_path="http://localhost:3000/denuncias";
+  base_path="http://10.0.2.2:3000/denuncias";
 
   constructor(private http: HttpClient) { }
 

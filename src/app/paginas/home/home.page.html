@@ -13,7 +13,7 @@
   </ion-button>
 
   <ion-list>
-    <ion-item *ngFor='let denuncia of denunciasServ.denuncias | slice:0:4; let i=index'>
+    <ion-item *ngFor='let denuncia of denunciasServ.denuncias | ordenar | slice:0:4; let i=index '>
       <ion-label (click)="mostrarDetalles(denuncia)">
         {{denuncia.texto}}<br>
         <span class="peq">

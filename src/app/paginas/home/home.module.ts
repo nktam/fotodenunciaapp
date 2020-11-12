@@ -7,6 +7,7 @@ import {HomePage} from './home.page';
 import {HomePageRoutingModule} from './home-routing.module';
 import {RouterModule} from '@angular/router';
 import {ChartsModule} from 'ng2-charts';
+import {OrdenarPipe} from '../../pipes/ordenar.pipe';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import {ChartsModule} from 'ng2-charts';
     HomePageRoutingModule,
     RouterModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, OrdenarPipe]
 })
 export class HomePageModule { }
