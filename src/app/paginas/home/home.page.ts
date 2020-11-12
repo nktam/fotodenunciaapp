@@ -19,9 +19,9 @@ export class HomePage {
     public servGra: GraficosService,
     public modalCtrl: ModalController) { }
 
-  async ionViewDidEnter() {
+  ionViewDidEnter() {
     // obtenemos las denuncias por mes de los últimos 6
-    await this.servGra.denunciasMes();
+    this.servGra.denunciasMes();
   }
 
   public chartClicked(e: any): void {

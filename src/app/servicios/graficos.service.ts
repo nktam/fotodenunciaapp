@@ -40,14 +40,16 @@ export class GraficosService {
   private GetUltimosMeses(fecha: Date): Date[] {
     let i;
     let meses=[];
+    let mes=new Date(fecha.setMonth(fecha.getMonth()-5));
     for(i=0; i<6; i++) {
-      meses.push(fecha.setMonth(fecha.getMonth()-1));
+      meses.push(mes);
+      mes=new Date(fecha.setMonth(fecha.getMonth()+1));
     }
     return meses
   }
 
   // formateamos los meses para presentar en el gráfico
-  private formatoMeses(meses) {
+  private formatoMeses(meses: Date[]): string[] {
     let nombresMeses=["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
     let mesesaño=meses.map(e => nombresMeses[new Date(e).getMonth()]+new Date(e).getFullYear());
     return mesesaño;
@@ -67,7 +69,6 @@ export class GraficosService {
       return num;
     });
     this.lineChartData[0]['data']=denMes;
-
   }
 
 }
